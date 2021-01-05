@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour {
 
+    private SceneStateController controller = null;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);//不要删除它
     }
 
-    // Use this for initialization
+    
     void Start () {
-		
+        controller = new SceneStateController();
+        controller.SetState(new StartState(controller),false);
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
-		
+        controller.StateUpdate();
 	}
 }

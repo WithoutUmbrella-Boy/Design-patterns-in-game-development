@@ -6,7 +6,7 @@ using System.Text;
 public class ISceneState
 {
     private string mSceneName;
-    private SceneStateController mController;
+    protected SceneStateController mController;
 
     public ISceneState(string sceneName,SceneStateController controller)
     {
@@ -14,7 +14,12 @@ public class ISceneState
         mController = controller;
     }
 
-
+    public string SceneName
+    {
+        get { return mSceneName; }
+    }
+    
+    //每次进入到这个状态的时候调用
     public virtual void StateStart()
     {
 
