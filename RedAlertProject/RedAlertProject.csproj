@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DesignModeCode\DM01State.cs" />
+    <Compile Include="Assets\Scripts\GameFacade.cs" />
     <Compile Include="Assets\Scripts\GameLoop.cs" />
     <Compile Include="Assets\Scripts\SceneState\BattleState.cs" />
     <Compile Include="Assets\Scripts\SceneState\ISceneState.cs" />
