@@ -16,6 +16,85 @@ public abstract class IWeapon
     protected Light mLight;
     protected AudioSource mAudio;
 
-    public abstract void Fire(Vector3 targetPosition);
+
+    protected float mEffectDisplayTime = 0;
+
+    public void Update()
+    {
+        if (mEffectDisplayTime>0)
+        {
+            mEffectDisplayTime -= Time.deltaTime;
+            if (mEffectDisplayTime<=0)
+            {
+                DisableEffect();
+            }
+        }
+    }
+
+    //模板方法模式
+    public void Fire(Vector3 targetPosition)
+    {
+        
+        //显示枪口特效
+        PlayMuzzleEffect();
+
+        //显示子弹轨迹特效
+        PlayBulletEffect(targetPosition);
+
+        //设置特效显示时间
+        SetEffetDisplayTime();
+
+        //播放声音
+        PlaySound();
+
+    }
+
+
+    protected abstract void SetEffetDisplayTime();
+
+
+    protected virtual void PlayMuzzleEffect()
+    {
+        mPariticle.Stop();
+        mPariticle.Play();
+        mLight.enabled = true;
+    }
+
+
+    //虚方法和抽象方法的一个区别就是，抽象方法的话子类必须重写改抽象方法，虚方法的话有方法体，可以选择重写或者不重写
+    protected abstract void PlayBulletEffect(Vector3 targetPosition);
+    
+        
+    
+
+
+    protected void DoPlayBulletEffect(float width,Vector3 targetPosition)
+    {
+        mLine.enabled = true;
+        mLine.startWidth = width; mLine.endWidth = width;
+        mLine.SetPosition(0, mGameObject.transform.position);
+        mLine.SetPosition(1, targetPosition);
+    }
+
+    //虚方法和抽象方法的一个区别就是，抽象方法的话子类必须重写改抽象方法，虚方法的话有方法体，可以选择重写或者不重写
+    protected abstract void PlaySound();
+    
+        
+        
+    
+
+
+    protected void DoPlaySound(string clipName)
+    {
+        AudioSource clip = null;//TODO
+        mAudio.clip = clip;
+        mAudio.Play();
+    }
+
+    private void DisableEffect()
+    {
+        mLine.enabled = false;
+        mLight.enabled = false;
+    }
 }
 
