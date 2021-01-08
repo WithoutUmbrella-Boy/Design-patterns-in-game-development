@@ -11,17 +11,48 @@ public abstract class ICharacter
     protected GameObject mGameObject;
     protected NavMeshAgent mNavAgent;
     protected AudioSource mAudio;
+    protected Animation mAnim;
     protected IWeapon mWeapon ;
 
     public IWeapon weapon { set { mWeapon = value; } }
 
-
-
-    public void Attack(Vector3 targetPosition)
+    public Vector3 position
     {
-        mWeapon.Fire(targetPosition);
+        get
+        {
+            if (mGameObject == null)
+            {
+                Debug.LogError("mGameObject为空"); return Vector3.zero;
+            }
+            return mGameObject.transform.position;
+        }
+    }
+
+    public float atkRange
+    {
+        get
+        {
+            return mWeapon.atkRange;
+        }
+    }
+
+
+
+    public void Attack(ICharacter target)
+    {
+        mWeapon.Fire(target.position);
     }
     
+    public void PlayAnim(string animName)
+    {
+        mAnim.CrossFade(animName);
+    }
 
+    public void MoveTo(Vector3 targetPosition)
+    {
+        mNavAgent.SetDestination(targetPosition);
+    }
+
+    
 }
 

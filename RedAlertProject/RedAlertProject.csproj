@@ -101,6 +101,11 @@
     <Compile Include="Assets\Scripts\CharacterSystem\Enemy\EnemyTroll.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Enemy\IEnemy.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\ICharacter.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\SoldierAI\ISoldierState.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\SoldierAI\SoldierAttackState.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\SoldierAI\SoldierChaseState.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\SoldierAI\SoldierFSMSytem.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\SoldierAI\SoldierIdleState.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\ISoldier.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\SoldierCaptain.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\SoldierRookie.cs" />

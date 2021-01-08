@@ -19,6 +19,16 @@ public abstract class IWeapon
 
     protected float mEffectDisplayTime = 0;
 
+
+    public float atkRange
+    {
+        get
+        {
+            return mAtkRange;
+        }
+    }
+
+
     public void Update()
     {
         if (mEffectDisplayTime>0)
@@ -96,5 +106,6 @@ public abstract class IWeapon
         mLine.enabled = false;
         mLight.enabled = false;
     }
+
 }
 
