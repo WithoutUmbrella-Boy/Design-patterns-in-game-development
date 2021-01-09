@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyAttrStrategy : IAttrStrategy
 {
-    public int GetCritDmg(int critRate)
+    public int GetCritDmg(float critRate)
     {
         if (UnityEngine.Random.Range(0,1f)<critRate)
         {

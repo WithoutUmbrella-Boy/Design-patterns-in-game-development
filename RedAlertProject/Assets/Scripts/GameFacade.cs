@@ -93,5 +93,10 @@ public class GameFacade
     }
 
 
+    public Vector3 GetEnemyTargetPosition()
+    {
+        //TODO
+        return Vector3.zero;
+    }
 }
 

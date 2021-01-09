@@ -36,13 +36,28 @@ public abstract class ICharacter
         }
     }
 
+    public void Update()
+    {
+        mWeapon.Update();
+    }
 
+    public abstract void UpdateFSMAI(List<ICharacter> targets);
 
     public void Attack(ICharacter target)
     {
         mWeapon.Fire(target.position);
+        mGameObject.transform.LookAt(target.position);
+        PlayAnim("attack");
+        target.UnderAttack(mWeapon.atk+ mAttr.critValue);
     }
-    
+
+    public void UnderAttack(int damage)
+    {
+        mAttr.TakeDamage(damage);
+
+    }
+
+
     public void PlayAnim(string animName)
     {
         mAnim.CrossFade(animName);
@@ -51,6 +66,7 @@ public abstract class ICharacter
     public void MoveTo(Vector3 targetPosition)
     {
         mNavAgent.SetDestination(targetPosition);
+        PlayAnim("move");
     }
 
     

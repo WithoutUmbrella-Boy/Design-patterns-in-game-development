@@ -5,7 +5,7 @@ using System.Text;
 
 public class SoldierAttrStrategy : IAttrStrategy
 {
-    public int GetCritDmg(int critRate)
+    public int GetCritDmg(float critRate)
     {
         return 0;
     }

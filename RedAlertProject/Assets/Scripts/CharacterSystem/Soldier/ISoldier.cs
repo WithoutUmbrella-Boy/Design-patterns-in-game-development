@@ -11,7 +11,7 @@ public class ISoldier:ICharacter
         MakeFSM();
     }
 
-    public void UpdateFSMAI(List<ICharacter> targets)
+    public override void UpdateFSMAI(List<ICharacter> targets)
     {
         mFSMSystem.currentState.Reason(targets);
         mFSMSystem.currentState.Act(targets);
