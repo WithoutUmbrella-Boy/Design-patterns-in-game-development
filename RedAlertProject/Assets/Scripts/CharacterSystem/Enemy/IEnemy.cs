@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class IEnemy:ICharacter
+public class IEnemy : ICharacter
 {
-   protected EnemyFSMSystem mFSMSystem;
+    protected EnemyFSMSystem mFSMSystem;
 
 
     public IEnemy()
     {
         MakeFSM();
     }
+
+
 
     public override void UpdateFSMAI(List<ICharacter> targets)
     {
@@ -31,5 +33,21 @@ public class IEnemy:ICharacter
 
         mFSMSystem.AddState(chaseState, attackState);
     }
-	
+
+
+    public override void UnderAttack(int damage)
+    {
+        base.UnderAttack(damage);
+        PlayEffect();
+        if (mAttr.currentHP <= 0)
+        {
+            Killed();
+        }
+    }
+
+    protected abstract void PlayEffect();
+    
+
+
+
 }

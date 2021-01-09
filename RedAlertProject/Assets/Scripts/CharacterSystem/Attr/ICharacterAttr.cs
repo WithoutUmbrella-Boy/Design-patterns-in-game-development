@@ -28,6 +28,7 @@ public   class ICharacterAttr {
 
     protected IAttrStrategy mStrategy;
     public int critValue { get { return mStrategy.GetCritDmg(mCritRate); } }
+    public int currentHP { get { return mCurrentHP; } }
     //public int dmgDescValue { get { return mDmgDescValue; }}
 
 

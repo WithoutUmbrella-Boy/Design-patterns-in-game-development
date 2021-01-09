@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ISoldier:ICharacter
+public class ISoldier : ICharacter
 {
     protected SoldierFSMSytem mFSMSystem;
-    public ISoldier():base()
+    public ISoldier() : base()
     {
         MakeFSM();
     }
+
+
+
+
+
 
     public override void UpdateFSMAI(List<ICharacter> targets)
     {
@@ -33,8 +38,26 @@ public class ISoldier:ICharacter
         attackState.AddTransition(SoldierTransition.NoEnemy, SoldierStateID.Idle);
         attackState.AddTransition(SoldierTransition.SeeEnemy, SoldierStateID.Chase);
 
-        mFSMSystem.AddState(idleState,chaseState,attackState);
-        
+        mFSMSystem.AddState(idleState, chaseState, attackState);
+
     }
-	
+
+
+    public override void UnderAttack(int damage)
+    {
+        base.UnderAttack(damage);
+
+        if (mAttr.currentHP <= 0)
+        {
+            PlaySound();
+            PlayEffect();
+            Killed();
+        }
+    }
+
+
+    protected abstract void PlaySound();
+    protected abstract void PlayEffect();
+    
+
 }

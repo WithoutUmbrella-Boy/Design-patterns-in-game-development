@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class EnemyAttr:ICharacterAttr
+public class EnemyAttr : ICharacterAttr
 {
+    public EnemyAttr(IAttrStrategy strategy) : base(strategy)
+    {
+    }
 }
 

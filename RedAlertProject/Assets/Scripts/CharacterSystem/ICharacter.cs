@@ -51,11 +51,22 @@ public abstract class ICharacter
         target.UnderAttack(mWeapon.atk+ mAttr.critValue);
     }
 
-    public void UnderAttack(int damage)
+    public virtual void UnderAttack(int damage)
     {
         mAttr.TakeDamage(damage);
+        //被攻击的效果  视效 只有敌人有
 
+
+        //死亡效果  音效 视频效果 只有战士有
     }
+
+    public void Killed()
+    {
+        //TODO
+    }
+
+
+
 
 
     public void PlayAnim(string animName)
@@ -69,6 +80,21 @@ public abstract class ICharacter
         PlayAnim("move");
     }
 
-    
+    protected void DoPlayEffect(string effectName)
+    {
+        //第一步 加载特效TODO
+        GameObject effectGO;
+
+        //控制销毁TODO
+    }
+
+    protected void DoPlaySound(string soundName)
+    {
+        AudioClip clip = null;//TODO
+        mAudio.clip = clip;
+        mAudio.Play();
+    }
+
+
 }
 
