@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Gun,
+    Rifle,
+    Rocket
+}
+
+
+
 public abstract class IWeapon
 {
     protected int mAtk;
@@ -31,6 +40,22 @@ public abstract class IWeapon
     public int atk {
         get { return mAtk; }
     }
+
+    public ICharacter owner { set { mOwner = value; } }
+    public GameObject gameObject { get { return mGameObject; } }
+    public IWeapon(int atk,float atkRange,GameObject gameObject)
+    {
+        mAtk = atk;
+        mAtkRange = atkRange;
+        mGameObject = gameObject;
+        Transform effect = mGameObject.transform.Find("Effect");
+        mPariticle = effect.GetComponent<ParticleSystem>();
+        mLine = effect.GetComponent<LineRenderer>();
+        mLight = effect.GetComponent<Light>();
+        mAudio = effect.GetComponent<AudioSource>();
+
+    }
+
 
     public void Update()
     {
@@ -99,7 +124,7 @@ public abstract class IWeapon
 
     protected void DoPlaySound(string clipName)
     {
-        AudioSource clip = null;//TODO
+        AudioClip clip = FactoryManager.assetFactory.LoadAudioClip(clipName);
         mAudio.clip = clip;
         mAudio.Play();
     }

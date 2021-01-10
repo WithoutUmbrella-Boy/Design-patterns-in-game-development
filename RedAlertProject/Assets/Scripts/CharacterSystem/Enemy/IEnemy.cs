@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class IEnemy : ICharacter
+public abstract class IEnemy : ICharacter
 {
     protected EnemyFSMSystem mFSMSystem;
 

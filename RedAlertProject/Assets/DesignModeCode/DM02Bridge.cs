@@ -21,7 +21,7 @@ public class DM02Bridge : MonoBehaviour
         //Capsule capsule = new Capsule(renderEngine);
         //capsule.Draw();
 
-        ICharacter character = new SoldierCaptain();
+        //ICharacter character = new SoldierCaptain();
         //WeaponGun gun = new WeaponGun();
         //character.gun = gun;
 
@@ -32,7 +32,7 @@ public class DM02Bridge : MonoBehaviour
         //WeaponRocket rocket = new WeaponRocket();
         //character.rocket = rocket;
 
-        character.weapon = new WeaponLaser();
+        //character.weapon = new WeaponLaser();
         //character.Attack(Vector3.one);
     }
 }

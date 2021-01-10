@@ -14,7 +14,7 @@ public abstract class ICharacter
     protected Animation mAnim;
     protected IWeapon mWeapon ;
 
-    public IWeapon weapon { set { mWeapon = value; } }
+    //public IWeapon weapon { set { mWeapon = value; } }
 
     public Vector3 position
     {
@@ -33,6 +33,41 @@ public abstract class ICharacter
         get
         {
             return mWeapon.atkRange;
+        }
+    }
+
+
+    public ICharacterAttr attr { set { mAttr = value; } }
+
+    public GameObject gameObject
+    {
+        set
+        {
+            mGameObject = value;
+            mNavAgent = mGameObject.GetComponent<NavMeshAgent>();
+            mAudio = mGameObject.GetComponent<AudioSource>();
+            mAnim = mGameObject.GetComponentInChildren<Animation>();
+        }
+        get
+        {
+            return mGameObject;
+        }
+    }
+
+
+    public IWeapon weapon
+    {
+        set
+        {
+            mWeapon = value;
+            mWeapon.owner = this;
+            //Transform weaponPoint = mGameObject.transform.find TODO
+            GameObject child = UnityTool.FindChild(mGameObject, "weapon-point");
+            UnityTool.Attach(child, mWeapon.gameObject);
+        }
+        get
+        {
+            return mWeapon;
         }
     }
 
@@ -82,15 +117,17 @@ public abstract class ICharacter
 
     protected void DoPlayEffect(string effectName)
     {
-        //第一步 加载特效TODO
-        GameObject effectGO;
+        //第一步 加载特效
+        GameObject effectGO = FactoryManager.assetFactory.LoadEffect(effectName);
+        effectGO.transform.position = position;
 
-        //控制销毁TODO
+        //控制销毁
+        effectGO.AddComponent<DestoryForTime>();
     }
 
     protected void DoPlaySound(string soundName)
     {
-        AudioClip clip = null;//TODO
+        AudioClip clip = FactoryManager.assetFactory.LoadAudioClip(soundName);
         mAudio.clip = clip;
         mAudio.Play();
     }

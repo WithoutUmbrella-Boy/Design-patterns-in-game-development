@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ISoldier : ICharacter
+public abstract class ISoldier : ICharacter
 {
     protected SoldierFSMSytem mFSMSystem;
     public ISoldier() : base()
