@@ -14,9 +14,11 @@ public enum WeaponType
 
 public abstract class IWeapon
 {
-    protected int mAtk;
-    protected float mAtkRange;
+    //protected int mAtk;
+    //protected float mAtkRange;
     //protected int mAtkPlusValue;
+
+    protected WeaponBaseAttr mBaseAttr;
 
     protected GameObject mGameObject;
     protected ICharacter mOwner;
@@ -33,20 +35,19 @@ public abstract class IWeapon
     {
         get
         {
-            return mAtkRange;
+            return mBaseAttr.atkRange;
         }
     }
 
     public int atk {
-        get { return mAtk; }
+        get { return mBaseAttr.atk; }
     }
 
     public ICharacter owner { set { mOwner = value; } }
     public GameObject gameObject { get { return mGameObject; } }
-    public IWeapon(int atk,float atkRange,GameObject gameObject)
+    public IWeapon(WeaponBaseAttr baseAttr,GameObject gameObject)
     {
-        mAtk = atk;
-        mAtkRange = atkRange;
+        mBaseAttr = baseAttr;
         mGameObject = gameObject;
         Transform effect = mGameObject.transform.Find("Effect");
         mPariticle = effect.GetComponent<ParticleSystem>();

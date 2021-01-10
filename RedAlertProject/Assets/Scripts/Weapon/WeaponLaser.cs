@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponLaser : IWeapon
 {
-    public WeaponLaser(int atk, float atkRange, GameObject gameObject) : base(atk, atkRange, gameObject) { }
+    public WeaponLaser(WeaponBaseAttr baseAttr, GameObject gameObject) : base(baseAttr, gameObject) { }
 
 
     protected override void PlayBulletEffect(Vector3 targetPosition)
