@@ -89,8 +89,10 @@
     <Compile Include="Assets\DesignModeCode\DM06Composite.cs" />
     <Compile Include="Assets\Scripts\ArchievementSystem\ArchievementSystem.cs" />
     <Compile Include="Assets\Scripts\BaseClass\IGameSystem.cs" />
-    <Compile Include="Assets\Scripts\BaseClass\IUI.cs" />
+    <Compile Include="Assets\Scripts\BaseClass\IBaseUI.cs" />
     <Compile Include="Assets\Scripts\CampSystem\CampSystem.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\ICamp.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\SoldierCamp.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\AttrStrategy\EnemyAttrStrategy.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\AttrStrategy\IAttrStrategy.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\AttrStrategy\SoldierAttrStrategy.cs" />

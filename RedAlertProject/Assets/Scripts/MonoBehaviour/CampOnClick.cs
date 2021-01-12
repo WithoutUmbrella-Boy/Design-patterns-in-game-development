@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CampOnClick : MonoBehaviour
 {
-    //private ICamp mCamp;
-    //public ICamp camp { set { mCamp = value; } }
+    private ICamp mCamp;
+    public ICamp camp { set { mCamp = value; } }
 
-    //void OnMouseUpAsButton()
-    //{
-    //    GameFacade.Insance.ShowCampInfo(mCamp);
-    //}
+    void OnMouseUpAsButton()
+    {
+        GameFacade.Insance.ShowCampInfo(mCamp);
+    }
 }

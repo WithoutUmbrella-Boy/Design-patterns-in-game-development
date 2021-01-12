@@ -98,5 +98,10 @@ public class GameFacade
         //TODO
         return Vector3.zero;
     }
+
+    public void ShowCampInfo(ICamp camp)
+    {
+        mCampInfoUI.ShowCampInfo(camp);
+    }
 }
 

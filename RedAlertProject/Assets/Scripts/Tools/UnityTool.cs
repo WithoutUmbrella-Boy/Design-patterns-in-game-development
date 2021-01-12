@@ -22,9 +22,9 @@ public static class UnityTool
                 child = t;
             }
         }
-         return child.gameObject;
-        //if (isFinded) return child.gameObject;
-        //return null;
+         
+        if (isFinded) return child.gameObject;
+        return null;
     }
 
     public static void Attach(GameObject parent, GameObject child)

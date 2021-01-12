@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoop : MonoBehaviour {
+public class GameLoop : MonoBehaviour
+{
 
     private SceneStateController controller = null;
 
@@ -11,14 +12,20 @@ public class GameLoop : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);//不要删除它
     }
 
-    
-    void Start () {
+
+    void Start()
+    {
         controller = new SceneStateController();
-        controller.SetState(new StartState(controller),false);
-	}
-	
-	
-	void Update () {
-        controller.StateUpdate();
-	}
+        controller.SetState(new StartState(controller), false);
+    }
+
+
+    void Update()
+    {
+        if (controller != null)
+            controller.StateUpdate();
+
+
+
+    }
 }
