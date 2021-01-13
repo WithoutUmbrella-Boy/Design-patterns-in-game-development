@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-
 public class SoldierChaseState : ISoldierState
 {
     public SoldierChaseState(SoldierFSMSytem fsm, ICharacter c) : base(fsm, c) { mStateID = SoldierStateID.Chase; }
-
-    public override void Act(List<ICharacter> targets)
-    {
-        if (targets != null && targets.Count > 0)
-        {
-            mCharacter.MoveTo(targets[0].position);
-        }
-    }
-
     public override void Reason(List<ICharacter> targets)
     {
-        if (targets != null || targets.Count == 0)
+        if (targets == null || targets.Count == 0)
         {
             mFSM.PerformTransition(SoldierTransition.NoEnemy); return;
         }
@@ -28,5 +18,12 @@ public class SoldierChaseState : ISoldierState
             mFSM.PerformTransition(SoldierTransition.CanAttack);
         }
     }
-}
 
+    public override void Act(List<ICharacter> targets)
+    {
+        if (targets != null && targets.Count > 0)
+        {
+            mCharacter.MoveTo(targets[0].position);
+        }
+    }
+}

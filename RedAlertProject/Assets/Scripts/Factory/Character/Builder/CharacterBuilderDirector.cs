@@ -11,7 +11,7 @@ public class CharacterBuilderDirector
         builder.AddGameObject();
         builder.AddWeapon();
 
-        //builder.AddInCharacterSystem();
+        builder.AddInCharacterSystem();
         return builder.GetResult();
     }
 }

@@ -27,6 +27,7 @@ public abstract class ISoldier : ICharacter
 
     public override void UpdateFSMAI(List<ICharacter> targets)
     {
+        if (mIsKilled) return;
         mFSMSystem.currentState.Reason(targets);
         mFSMSystem.currentState.Act(targets);
     }
@@ -54,6 +55,7 @@ public abstract class ISoldier : ICharacter
 
     public override void UnderAttack(int damage)
     {
+        if (mIsKilled) return;
         base.UnderAttack(damage);
 
         if (mAttr.currentHP <= 0)
@@ -64,9 +66,20 @@ public abstract class ISoldier : ICharacter
         }
     }
 
+    public override void Killed()
+    {
+        base.Killed();
+        GameFacade.Insance.NotifySubject(GameEventType.SoldierKilled);
+    }
+
 
     protected abstract void PlaySound();
     protected abstract void PlayEffect();
-    
+
+    public override void RunVisitor(ICharacterVisitor visitor)
+    {
+        visitor.VisitSoldier(this);
+    }
+
 
 }

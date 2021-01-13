@@ -18,9 +18,9 @@ public class GameStateInfoUI : IBaseUI
     private Slider mEnergySlider;
     private Text mEnergyText;
 
-    //private float mMsgTimer = 0;
-    //private int mMsgTime = 2;
-    //private AliveCountVisitor mAliveCountVisitor = new AliveCountVisitor();
+    private float mMsgTimer = 0;
+    private int mMsgTime = 2;
+    private AliveCountVisitor mAliveCountVisitor = new AliveCountVisitor();
 
     public override void Init()
     {
@@ -46,37 +46,37 @@ public class GameStateInfoUI : IBaseUI
         mEnergySlider = UITool.FindChild<Slider>(mRootUI, "EnergySlider");
         mEnergyText = UITool.FindChild<Text>(mRootUI, "EnergyText");
 
-        //    mMessage.text = "";
+        mMessage.text = "";
         mGameOverUI.SetActive(false);
     }
-        //public override void Update()
-        //{
-        //    base.Update();
-        //    UpdateAliveCount();
-        //    if (mMsgTimer > 0)
-        //    {
-        //        mMsgTimer -= Time.deltaTime;
-        //        if (mMsgTimer <= 0)
-        //        {
-        //            mMessage.text = "";
-        //        }
-        //    }
-        //}
-        //public void ShowMsg(string msg)
-        //{
-        //    mMessage.text = msg;
-        //    mMsgTimer = mMsgTime;
-        //}
-        //public void UpdateEnergySlider(int nowEnergy, int maxEnergy)
-        //{
-        //    mEnergySlider.value = (float)nowEnergy / maxEnergy;
-        //    mEnergyText.text = "(" + nowEnergy + "/" + maxEnergy + ")";
-        //}
-        //public void UpdateAliveCount()
-        //{
-        //    mAliveCountVisitor.Reset();
-        //    mFacade.RunVisitor(mAliveCountVisitor);
-        //    mSoldierCount.text = mAliveCountVisitor.soldierCount.ToString();
-        //    mEnemyCount.text = mAliveCountVisitor.enemyCount.ToString();
-        //}
+    public override void Update()
+    {
+        base.Update();
+        UpdateAliveCount();
+        if (mMsgTimer > 0)
+        {
+            mMsgTimer -= Time.deltaTime;
+            if (mMsgTimer <= 0)
+            {
+                mMessage.text = "";
+            }
+        }
     }
+    public void ShowMsg(string msg)
+    {
+        mMessage.text = msg;
+        mMsgTimer = mMsgTime;
+    }
+    public void UpdateEnergySlider(int nowEnergy, int maxEnergy)
+    {
+        mEnergySlider.value = (float)nowEnergy / maxEnergy;
+        mEnergyText.text = "(" + nowEnergy + "/" + maxEnergy + ")";
+    }
+    public void UpdateAliveCount()
+    {
+        mAliveCountVisitor.Reset();
+        mFacade.RunVisitor(mAliveCountVisitor);
+        mSoldierCount.text = mAliveCountVisitor.soldierCount.ToString();
+        mEnemyCount.text = mAliveCountVisitor.enemyCount.ToString();
+    }
+}

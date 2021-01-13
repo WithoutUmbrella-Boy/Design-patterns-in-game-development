@@ -59,6 +59,8 @@ public class GameFacade
         mGamePauseUI.Init();
         mGameStateInfoUI.Init();
         mSoldierInfoUI.Init();
+
+        LoadMemento();
     }
 
 
@@ -90,13 +92,15 @@ public class GameFacade
         mGamePauseUI.Release();
         mGameStateInfoUI.Release();
         mSoldierInfoUI.Release();
+
+        CreateMemento();
     }
 
 
     public Vector3 GetEnemyTargetPosition()
     {
-        //TODO
-        return Vector3.zero;
+
+        return mStageSystem.targetPosition;
     }
 
     public void ShowCampInfo(ICamp camp)
@@ -116,8 +120,8 @@ public class GameFacade
     }
 
     public void RemoveEnemy(IEnemy enemy)
-    {
-        mCharacterSystem.RemoveEnemey(enemy);
+    {        
+        mCharacterSystem.RemoveEnemy(enemy);
     }
 
     public bool TakeEnergy(int value)

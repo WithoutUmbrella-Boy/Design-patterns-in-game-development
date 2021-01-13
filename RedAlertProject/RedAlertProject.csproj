@@ -88,6 +88,11 @@
     <Compile Include="Assets\DesignModeCode\DM05Builder.cs" />
     <Compile Include="Assets\DesignModeCode\DM06Composite.cs" />
     <Compile Include="Assets\DesignModeCode\DM07Command.cs" />
+    <Compile Include="Assets\DesignModeCode\DM08ChainOfResponsibility.cs" />
+    <Compile Include="Assets\DesignModeCode\DM09Observer.cs" />
+    <Compile Include="Assets\DesignModeCode\DM10Memento.cs" />
+    <Compile Include="Assets\DesignModeCode\DM11Visitor.cs" />
+    <Compile Include="Assets\Scripts\ArchievementSystem\AchievementMemento.cs" />
     <Compile Include="Assets\Scripts\ArchievementSystem\ArchievementSystem.cs" />
     <Compile Include="Assets\Scripts\BaseClass\IGameSystem.cs" />
     <Compile Include="Assets\Scripts\BaseClass\IBaseUI.cs" />
@@ -125,6 +130,8 @@
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\SoldierCaptain.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\SoldierRookie.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\Soldier\SoldierSergeant.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\Visitor\AliveCountVisitor.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystem\Visitor\ICharacterVisitor.cs" />
     <Compile Include="Assets\Scripts\EnergySystem\EnergySystem.cs" />
     <Compile Include="Assets\Scripts\Factory\Asset\IAssetFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Asset\LocalAssetFactory.cs" />
@@ -143,6 +150,15 @@
     <Compile Include="Assets\Scripts\Factory\Wenpon\IWeaponFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Wenpon\WeaponFactory.cs" />
     <Compile Include="Assets\Scripts\GameEventSystem\GameEventSystem.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Observer\EnemyKilledObserver\EnemyKilledObserverStageSystem.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Observer\EnemyKilledObserver\EnemyKillObserverArchievement.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Observer\IGameEventObserver.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Observer\NewStageObserver\NewStageObserverArchievement.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Observer\SoldierKilledObserver\SoldierKilledObserverArchievement.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Subject\EnemyKilledSubject.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Subject\IGameEventSubject.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Subject\NewStageSubject.cs" />
+    <Compile Include="Assets\Scripts\GameEventSystem\Subject\SoldierKilledSubject.cs" />
     <Compile Include="Assets\Scripts\GameFacade.cs" />
     <Compile Include="Assets\Scripts\GameLoop.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\CampOnClick.cs" />
@@ -152,6 +168,8 @@
     <Compile Include="Assets\Scripts\SceneState\MainMenuState.cs" />
     <Compile Include="Assets\Scripts\SceneState\SceneStateController.cs" />
     <Compile Include="Assets\Scripts\SceneState\StartState.cs" />
+    <Compile Include="Assets\Scripts\StageSystem\Handler\IStageHandler.cs" />
+    <Compile Include="Assets\Scripts\StageSystem\Handler\NormalStageHandler.cs" />
     <Compile Include="Assets\Scripts\StageSystem\StageSystem.cs" />
     <Compile Include="Assets\Scripts\Tools\UITool.cs" />
     <Compile Include="Assets\Scripts\Tools\UnityTool.cs" />

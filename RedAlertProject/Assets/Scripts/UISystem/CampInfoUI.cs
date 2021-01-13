@@ -60,7 +60,7 @@ public class CampInfoUI : IBaseUI
         Show();
         mCamp = camp;
 
-        //Debug.Log(camp.iconSprite);
+        
         mCampIcon.sprite = FactoryManager.assetFactory.LoadSprite(camp.iconSprite);
         mCampName.text = camp.name;
         mCampLevel.text = camp.lv.ToString();
@@ -122,7 +122,7 @@ public class CampInfoUI : IBaseUI
     private void OnCampUpgradeClick()
     {
         int energy = mCamp.energyCostCampUpgrade;
-        //Debug.Log(energy);
+        
         if (energy < 0)
         {
             mFacade.ShowMsg("兵营已到最大等级，无法再进行升级");

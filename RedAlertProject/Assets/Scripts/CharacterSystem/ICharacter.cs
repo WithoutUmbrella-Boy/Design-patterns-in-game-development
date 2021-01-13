@@ -14,6 +14,10 @@ public abstract class ICharacter
     protected Animation mAnim;
     protected IWeapon mWeapon ;
 
+    protected bool mIsKilled = false;
+    protected bool mCanDestroy = false;
+    protected float mDestroyTimer = 2f;
+
     //public IWeapon weapon { set { mWeapon = value; } }
 
     public Vector3 position
@@ -36,7 +40,8 @@ public abstract class ICharacter
         }
     }
 
-
+    public bool canDestroy { get { return mCanDestroy; } }
+    public bool isKilled { get { return mIsKilled; } }
     public ICharacterAttr attr { set { mAttr = value; } }
 
     public GameObject gameObject
@@ -73,10 +78,21 @@ public abstract class ICharacter
 
     public void Update()
     {
+        if (mIsKilled)
+        {
+            mDestroyTimer -= Time.deltaTime;
+            if (mDestroyTimer <= 0)
+            {
+                mCanDestroy = true;
+            }
+            return;
+        }
+
         mWeapon.Update();
     }
 
     public abstract void UpdateFSMAI(List<ICharacter> targets);
+    public abstract void RunVisitor(ICharacterVisitor visitor);
 
     public void Attack(ICharacter target)
     {
@@ -90,17 +106,21 @@ public abstract class ICharacter
     {
         mAttr.TakeDamage(damage);
         //被攻击的效果  视效 只有敌人有
-
-
         //死亡效果  音效 视频效果 只有战士有
     }
 
-    public void Killed()
+    public virtual void Killed()
     {
-        //TODO
+        mIsKilled = true;
+        //mNavAgent.Stop();已经过时
+        mNavAgent.isStopped = true;
+
     }
 
-
+    public void Release()
+    {
+        GameObject.Destroy(mGameObject);
+    }
 
 
 
@@ -113,6 +133,7 @@ public abstract class ICharacter
     {
         mNavAgent.SetDestination(targetPosition);
         PlayAnim("move");
+        
     }
 
     protected void DoPlayEffect(string effectName)
