@@ -39,21 +39,21 @@ public class CampInfoUI : IBaseUI
         mTrainingCount = UITool.FindChild<Text>(mRootUI, "TrainingCount");
         mTrainTime = UITool.FindChild<Text>(mRootUI, "TrainTime");
 
-        //    mTrainBtn.onClick.AddListener(OnTrainClick);
-        //    mCancelTrainBtn.onClick.AddListener(OnCancelTrainClick);
-        //    mCampUpgradeBtn.onClick.AddListener(OnCampUpgradeClick);
-        //    mWeaponUpgradeBtn.onClick.AddListener(OnWeaponUpgradeClick);
+        mTrainBtn.onClick.AddListener(OnTrainClick);
+        mCancelTrainBtn.onClick.AddListener(OnCancelTrainClick);
+        mCampUpgradeBtn.onClick.AddListener(OnCampUpgradeClick);
+        mWeaponUpgradeBtn.onClick.AddListener(OnWeaponUpgradeClick);
         Hide();
     }
-    //public override void Update()
-    //{
-    //    base.Update();
+    public override void Update()
+    {
+        base.Update();
 
-    //    if (mCamp != null)
-    //    {
-    //        ShowTrainingInfo();
-    //    }
-    //}
+        if (mCamp != null)
+        {
+            ShowTrainingInfo();
+        }
+    }
 
     public void ShowCampInfo(ICamp camp)
     {
@@ -65,22 +65,22 @@ public class CampInfoUI : IBaseUI
         mCampName.text = camp.name;
         mCampLevel.text = camp.lv.ToString();
         ShowWeaponLevel(camp.weaponType);
-        //mTrainBtnText.text = "训练\n" + mCamp.energyCostTrain + "点能量";
-        //ShowTrainingInfo();
+        mTrainBtnText.text = "训练\n" + mCamp.energyCostTrain + "点能量";
+        ShowTrainingInfo();
     }
-    //private void ShowTrainingInfo()
-    //{
-    //    mTrainingCount.text = mCamp.trainCount.ToString();
-    //    mTrainTime.text = mCamp.trainRemainingTime.ToString("0.00");
-    //    if (mCamp.trainCount == 0)
-    //    {
-    //        mCancelTrainBtn.interactable = false;
-    //    }
-    //    else
-    //    {
-    //        mCancelTrainBtn.interactable = true;
-    //    }
-    //}
+    private void ShowTrainingInfo()
+    {
+        mTrainingCount.text = mCamp.trainCount.ToString();
+        mTrainTime.text = mCamp.trainRemainingTime.ToString("0.00");
+        if (mCamp.trainCount == 0)
+        {
+            mCancelTrainBtn.interactable = false;
+        }
+        else
+        {
+            mCancelTrainBtn.interactable = true;
+        }
+    }
 
     void ShowWeaponLevel(WeaponType weaponType)
     {
@@ -102,58 +102,58 @@ public class CampInfoUI : IBaseUI
         }
     }
 
-    //private void OnTrainClick()
-    //{
-    //    int energy = mCamp.energyCostTrain;
-    //    if (GameFacade.Insance.TakeEnergy(energy))
-    //    {
-    //        mCamp.Train();
-    //    }
-    //    else
-    //    {
-    //        GameFacade.Insance.ShowMsg("训练士兵需要能量:" + energy + " 能量不足，无法训练新的士兵");
-    //    }
-    //}
-    //private void OnCancelTrainClick()
-    //{
-    //    mFacade.RecycleEnergy(mCamp.energyCostTrain);
-    //    mCamp.CancelTrainCommand();
-    //}
-    //private void OnCampUpgradeClick()
-    //{
-    //    int energy = mCamp.energyCostCampUpgrade;
-    //    //Debug.Log(energy);
-    //    if (energy < 0)
-    //    {
-    //        mFacade.ShowMsg("兵营已到最大等级，无法再进行升级");
-    //        return;
-    //    }
-    //    if (mFacade.TakeEnergy(energy))
-    //    {
-    //        mCamp.UpgradeCamp();
-    //        ShowCampInfo(mCamp);
-    //    }
-    //    else
-    //    {
-    //        mFacade.ShowMsg("升级兵营需要能量:" + energy + " 能量不足，请稍后再进行升级");
-    //    }
-    //}
-    //private void OnWeaponUpgradeClick()
-    //{
-    //    int energy = mCamp.energyCostWeaponUpgrade;
-    //    if (energy < 0)
-    //    {
-    //        mFacade.ShowMsg("武器已到最大等级，无法再进行升级");
-    //        return;
-    //    }
-    //    if (mFacade.TakeEnergy(energy))
-    //    {
-    //        mCamp.UpgradeWeapon();
-    //        ShowCampInfo(mCamp);
-    //    }
-    //    else
-    //    {
-    //        mFacade.ShowMsg("升级武器需要能量:" + energy + " 能量不足，请稍后再进行升级");
-    //    }
-    //}
+    private void OnTrainClick()
+    {
+        int energy = mCamp.energyCostTrain;
+        if (GameFacade.Insance.TakeEnergy(energy))
+        {
+            mCamp.Train();
+        }
+        else
+        {
+            GameFacade.Insance.ShowMsg("训练士兵需要能量:" + energy + " 能量不足，无法训练新的士兵");
+        }
+    }
+    private void OnCancelTrainClick()
+    {
+        mFacade.RecycleEnergy(mCamp.energyCostTrain);
+        mCamp.CancelTrainCommand();
+    }
+    private void OnCampUpgradeClick()
+    {
+        int energy = mCamp.energyCostCampUpgrade;
+        //Debug.Log(energy);
+        if (energy < 0)
+        {
+            mFacade.ShowMsg("兵营已到最大等级，无法再进行升级");
+            return;
+        }
+        if (mFacade.TakeEnergy(energy))
+        {
+            mCamp.UpgradeCamp();
+            ShowCampInfo(mCamp);
+        }
+        else
+        {
+            mFacade.ShowMsg("升级兵营需要能量:" + energy + " 能量不足，请稍后再进行升级");
+        }
+    }
+    private void OnWeaponUpgradeClick()
+    {
+        int energy = mCamp.energyCostWeaponUpgrade;
+        if (energy < 0)
+        {
+            mFacade.ShowMsg("武器已到最大等级，无法再进行升级");
+            return;
+        }
+        if (mFacade.TakeEnergy(energy))
+        {
+            mCamp.UpgradeWeapon();
+            ShowCampInfo(mCamp);
+        }
+        else
+        {
+            mFacade.ShowMsg("升级武器需要能量:" + energy + " 能量不足，请稍后再进行升级");
+        }
+    }
 }

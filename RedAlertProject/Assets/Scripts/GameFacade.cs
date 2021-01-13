@@ -103,5 +103,74 @@ public class GameFacade
     {
         mCampInfoUI.ShowCampInfo(camp);
     }
+
+
+    public void AddSoldier(ISoldier soldier)
+    {
+        mCharacterSystem.AddSoldier(soldier);
+    }
+
+    public void AddEnemy(IEnemy enemy)
+    {
+        mCharacterSystem.AddEnemy(enemy);
+    }
+
+    public void RemoveEnemy(IEnemy enemy)
+    {
+        mCharacterSystem.RemoveEnemey(enemy);
+    }
+
+    public bool TakeEnergy(int value)
+    {
+        return mEnergySystem.TakeEnergy(value);
+    }
+
+    public void RecycleEnergy(int value)
+    {
+        mEnergySystem.RecycleEnergy(value);
+    }
+
+    public void ShowMsg(string msg)
+    {
+        mGameStateInfoUI.ShowMsg(msg);
+    }
+
+    public void UpdateEnergySlider(int nowEnergy, int maxEnergy)
+    {
+        mGameStateInfoUI.UpdateEnergySlider(nowEnergy, maxEnergy);
+    }
+
+    public void RegisterObserver(GameEventType eventType, IGameEventObserver observer)
+    {
+        mGameEventSystem.RegisterObserver(eventType, observer);
+    }
+
+    public void RemoveObserver(GameEventType eventType, IGameEventObserver observer)
+    {
+        mGameEventSystem.RemoveObserver(eventType, observer);
+    }
+
+    public void NotifySubject(GameEventType eventType)
+    {
+        mGameEventSystem.NotifySubject(eventType);
+    }
+
+    private void LoadMemento()
+    {
+        AchievementMemento memento = new AchievementMemento();
+        memento.LoadData();
+        mArchievementSystem.SetMemento(memento);
+    }
+
+    private void CreateMemento()
+    {
+        AchievementMemento memento = mArchievementSystem.CreateMemento();
+        memento.SaveData();
+    }
+
+    public void RunVisitor(ICharacterVisitor visitor)
+    {
+        mCharacterSystem.RunVisitor(visitor);
+    }
 }
 

@@ -87,10 +87,16 @@
     <Compile Include="Assets\DesignModeCode\DM04TempleMethod.cs" />
     <Compile Include="Assets\DesignModeCode\DM05Builder.cs" />
     <Compile Include="Assets\DesignModeCode\DM06Composite.cs" />
+    <Compile Include="Assets\DesignModeCode\DM07Command.cs" />
     <Compile Include="Assets\Scripts\ArchievementSystem\ArchievementSystem.cs" />
     <Compile Include="Assets\Scripts\BaseClass\IGameSystem.cs" />
     <Compile Include="Assets\Scripts\BaseClass\IBaseUI.cs" />
     <Compile Include="Assets\Scripts\CampSystem\CampSystem.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\Command\ITrainCommand.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\Command\TrainCaptiveCommand.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\Command\TrainSoldierCommand.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\EnergyStategy\IEnergyCostStrategy.cs" />
+    <Compile Include="Assets\Scripts\CampSystem\EnergyStategy\SoldierEnergyCostStrategy.cs" />
     <Compile Include="Assets\Scripts\CampSystem\ICamp.cs" />
     <Compile Include="Assets\Scripts\CampSystem\SoldierCamp.cs" />
     <Compile Include="Assets\Scripts\CharacterSystem\AttrStrategy\EnemyAttrStrategy.cs" />

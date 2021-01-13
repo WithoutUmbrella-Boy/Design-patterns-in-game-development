@@ -35,8 +35,8 @@ public class EnemyBuilder : ICharacterBuilder
         return mCharacter;
     }
 
-    //public override void AddInCharacterSystem()
-    //{
-    //    GameFacade.Insance.AddEnemy(mCharacter as IEnemy);
-    //}
+    public override void AddInCharacterSystem()
+    {
+        GameFacade.Insance.AddEnemy(mCharacter as IEnemy);
+    }
 }

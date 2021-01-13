@@ -6,14 +6,14 @@ using System.Text;
 
 public abstract class IBaseUI
 {
-    //protected GameFacade mFacade;
+    protected GameFacade mFacade;
 
     public GameObject mRootUI;
 
     
     public virtual void Init()
     {
-        //mFacade = GameFacade.Insance;
+        mFacade = GameFacade.Insance;
     }
     public virtual void Update() { }
     public virtual void Release() { }

@@ -25,6 +25,6 @@ public abstract class ICharacterBuilder
     public abstract void AddCharacterAttr();
     public abstract void AddGameObject();
     public abstract void AddWeapon();
-    //public abstract void AddInCharacterSystem();
+    public abstract void AddInCharacterSystem();
     public abstract ICharacter GetResult();
 }

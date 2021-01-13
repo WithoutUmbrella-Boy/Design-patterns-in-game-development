@@ -12,10 +12,10 @@ public abstract class ICamp
     protected Vector3 mPosition;//集合点
     protected float mTrainTime;//训练时间，多久训练出一个士兵
 
-    //protected List<ITrainCommand> mCommands;
+    protected List<ITrainCommand> mCommands;
     private float mTrainTimer = 0;
 
-    //protected IEnergyCostStrategy energyCostStrategy;
+    protected IEnergyCostStrategy energyCostStrategy;
     protected int mEnergyCostCampUpgrade;
     protected int mEnergyCostWeaponUpgrade;
     protected int mEnergyCostTrain;
@@ -29,24 +29,24 @@ public abstract class ICamp
         mPosition = position;
         mTrainTime = trainTime;
         mTrainTimer = mTrainTime;
-        //mCommands = new List<ITrainCommand>();
+        mCommands = new List<ITrainCommand>();
     }
 
     public virtual void Update()
     {
-        //UpdateCommand();
+        UpdateCommand();
     }
-    //private void UpdateCommand()
-    //{
-    //    if (mCommands.Count <= 0) return;
-    //    mTrainTimer -= Time.deltaTime;
-    //    if (mTrainTimer <= 0)
-    //    {
-    //        mCommands[0].Execute();
-    //        mCommands.RemoveAt(0);
-    //        mTrainTimer = mTrainTime;
-    //    }
-    //}
+    private void UpdateCommand()
+    {
+        if (mCommands.Count <= 0) return;
+        mTrainTimer -= Time.deltaTime;
+        if (mTrainTimer <= 0)
+        {
+            mCommands[0].Execute();
+            mCommands.RemoveAt(0);
+            mTrainTimer = mTrainTime;
+        }
+    }
 
 
     public string name { get { return mName; } }
@@ -54,27 +54,28 @@ public abstract class ICamp
 
     public abstract int lv { get; }
     public abstract WeaponType weaponType { get; }
-    //public abstract int energyCostCampUpgrade { get; }
-    //public abstract int energyCostWeaponUpgrade { get; }
-    //public abstract int energyCostTrain { get; }
+    public abstract int energyCostCampUpgrade { get; }
+    public abstract int energyCostWeaponUpgrade { get; }
+    public abstract int energyCostTrain { get; }
 
-    //protected abstract void UpdateEnergyCost();
-    //public abstract void Train();
-    //public abstract void UpgradeCamp();
-    //public abstract void UpgradeWeapon();
+    protected abstract void UpdateEnergyCost();
+    public abstract void Train();
+    public abstract void UpgradeCamp();
+    public abstract void UpgradeWeapon();
 
-    //public void CancelTrainCommand()
-    //{
-    //    if (mCommands.Count > 0)
-    //    {
-    //        mCommands.RemoveAt(mCommands.Count - 1);
-    //        if (mCommands.Count == 0)
-    //        {
-    //            mTrainTimer = mTrainTime;
-    //        }
-    //    }
-    //}
-    //public int trainCount { get { return mCommands.Count; } }
+    public void CancelTrainCommand()
+    {
+        if (mCommands.Count > 0)
+        {
+            mCommands.RemoveAt(mCommands.Count - 1);
+            //移除之后，可能就没有命令了，要把计时器重置
+            if (mCommands.Count == 0)
+            {
+                mTrainTimer = mTrainTime;
+            }
+        }
+    }
+    public int trainCount { get { return mCommands.Count; } }
 
-    //public float trainRemainingTime { get { return mTrainTimer; } }
+    public float trainRemainingTime { get { return mTrainTimer; } }
 }

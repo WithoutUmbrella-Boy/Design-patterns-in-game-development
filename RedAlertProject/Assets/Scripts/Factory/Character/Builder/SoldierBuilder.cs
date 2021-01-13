@@ -39,8 +39,8 @@ public class SoldierBuilder : ICharacterBuilder
         return mCharacter;
     }
 
-    //public override void AddInCharacterSystem()
-    //{
-    //    GameFacade.Insance.AddSoldier(mCharacter as ISoldier);
-    //}
+    public override void AddInCharacterSystem()
+    {
+        GameFacade.Insance.AddSoldier(mCharacter as ISoldier);
+    }
 }
