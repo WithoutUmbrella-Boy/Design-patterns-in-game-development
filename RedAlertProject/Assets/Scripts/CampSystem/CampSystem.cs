@@ -8,7 +8,7 @@ public class CampSystem : IGameSystem
 {
     private Dictionary<SoldierType, SoldierCamp> mSoliderCamps = new Dictionary<SoldierType, SoldierCamp>();
 
-    //private Dictionary<EnemyType, CaptiveCamp> mCaptiveCamps = new Dictionary<EnemyType, CaptiveCamp>();
+    private Dictionary<EnemyType, CaptiveCamp> mCaptiveCamps = new Dictionary<EnemyType, CaptiveCamp>();
 
     public override void Init()
     {
@@ -17,7 +17,7 @@ public class CampSystem : IGameSystem
         InitCamp(SoldierType.Sergeant);
         InitCamp(SoldierType.Captain);
 
-        //InitCamp(EnemyType.Elf);
+        InitCamp(EnemyType.Elf);
     }
 
 
@@ -64,37 +64,37 @@ public class CampSystem : IGameSystem
     }
 
 
-    //private void InitCamp(EnemyType enemyType)
-    //{
-    //    GameObject gameObject = null;
-    //    string gameObjectName = null;
-    //    string name = null;
-    //    string icon = null;
-    //    Vector3 position = Vector3.zero;
-    //    float trainTime = 0;
-    //    switch (enemyType)
-    //    {
-    //        case EnemyType.Elf:
-    //            gameObjectName = "CaptiveCamp_Elf";
-    //            name = "俘兵营";
-    //            icon = "CaptiveCamp";
-    //            trainTime = 3;
-    //            break;
-    //        default:
-    //            Debug.LogError("无法根据敌人类型" + enemyType + "初始化兵营");
-    //            break;
-    //    }
-    //    gameObject = GameObject.Find(gameObjectName);
-    //    //Debug.Log(gameObject.name);
-    //    position = UnityTool.FindChild(gameObject, "TrainPoint").transform.position;
-    //    //SoldierCamp camp = new SoldierCamp(gameObject, name, icon, soldierType, position, trainTime);
-    //    CaptiveCamp camp = new CaptiveCamp(gameObject, name, icon, enemyType, position, trainTime);
+    private void InitCamp(EnemyType enemyType)
+    {
+        GameObject gameObject = null;
+        string gameObjectName = null;
+        string name = null;
+        string icon = null;
+        Vector3 position = Vector3.zero;
+        float trainTime = 0;
+        switch (enemyType)
+        {
+            case EnemyType.Elf:
+                gameObjectName = "CaptiveCamp_Elf";
+                name = "俘兵营";
+                icon = "CaptiveCamp";
+                trainTime = 3;
+                break;
+            default:
+                Debug.LogError("无法根据敌人类型" + enemyType + "初始化兵营");
+                break;
+        }
+        gameObject = GameObject.Find(gameObjectName);
+        //Debug.Log(gameObject.name);
+        position = UnityTool.FindChild(gameObject, "TrainPoint").transform.position;
+        //SoldierCamp camp = new SoldierCamp(gameObject, name, icon, soldierType, position, trainTime);
+        CaptiveCamp camp = new CaptiveCamp(gameObject, name, icon, enemyType, position, trainTime);
 
-    //    gameObject.AddComponent<CampOnClick>().camp = camp;
+        gameObject.AddComponent<CampOnClick>().camp = camp;
 
-    //    //mSoliderCamps.Add(soldierType, camp);
-    //    mCaptiveCamps.Add(enemyType, camp);
-    //}
+        //mSoliderCamps.Add(soldierType, camp);
+        mCaptiveCamps.Add(enemyType, camp);
+    }
 
     public override void Update()
     {
@@ -103,9 +103,9 @@ public class CampSystem : IGameSystem
         {
             camp.Update();
         }
-        //foreach (CaptiveCamp camp in mCaptiveCamps.Values)
-        //{
-        //    camp.Update();
-        //}
+        foreach (CaptiveCamp camp in mCaptiveCamps.Values)
+        {
+            camp.Update();
+        }
     }
 }

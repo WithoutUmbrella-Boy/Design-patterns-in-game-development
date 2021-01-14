@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class ResourcesAssetFactory : IAssetFactory
 {
-    private const string SoldierPath = "Characters/Soldier/";
-    private const string EnemyPath = "Characters/Enemy/";
-    private const string WeaponPath = "Weapons/";
-    private const string EffectPath = "Effects/";
-    private const string AudioPath = "Audios/";
-    private const string SpritePath = "Sprites/";
+    public const string SoldierPath = "Characters/Soldier/";
+    public const string EnemyPath = "Characters/Enemy/";
+    public const string WeaponPath = "Weapons/";
+    public const string EffectPath = "Effects/";
+    public const string AudioPath = "Audios/";
+    public const string SpritePath = "Sprites/";
 
     public AudioClip LoadAudioClip(string name)
     {

@@ -42,7 +42,7 @@ public abstract class ICharacter
 
     public bool canDestroy { get { return mCanDestroy; } }
     public bool isKilled { get { return mIsKilled; } }
-    public ICharacterAttr attr { set { mAttr = value; } }
+    public ICharacterAttr attr { set { mAttr = value; } get { return mAttr; } }
 
     public GameObject gameObject
     {
